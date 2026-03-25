@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICEE Mexico</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="icon" href="logos.png" type="image/x-icon">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery (necesario para Bootstrap 3/4) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<style>
+:root {
+    --cherry: #d90429;
+    --black: #111111;
+    --white: #ffffff;
+    --gray: #f8f8f8;
+    --border: #333333;
+}
+
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background: #000;
+    z-index: 1000;
+    position: relative;
+}
+
+.logo img{
+    height: 45px;
+}
+
+/* LINKS */
+.nav-links{
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+/* HAMBURGUESA */
+.menu-trigger{
+    display: none;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.burger{
+    width: 20px;
+}
+
+.b-line{
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.menu-trigger:hover .b-line{
+    background: var(--cherry);
+    width: 80%;
+}
+
+/* ================= HERO ================= */
+.hero{
+    height: 285px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+.hero-img{
+    width: 250px;
+    max-width: 35%;
+    height: auto;
+}
+
+/* ================= PRODUCTO ================= */
+.product-wrapper{
+    padding: 80px 10%;
+}
+
+.product-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.product-image{
+    display: flex;
+    justify-content: center;
+}
+
+.product-image img{
+    width: 100%;
+    max-width: 350px;
+}
+
+.product-center h1{
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.desc{
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.price{
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.specs p{
+    font-size: 1.5rem;
+}
+
+.btn{
+    margin-top: 25px;
+    padding: 12px 20px;
+    border: 1px solid #111;
+    background: transparent;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background: #111;
+    color: #fff;
+}
+
+/* FEATURES */
+.features h2{
+    margin-bottom: 15px;
+}
+
+.features li{
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+    background: #fff;
+    padding: 60px 10% 20px;
+    border-top: 1px solid #ddd;
+}
+
+.footer-wrap{
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.f-links{
+    display: flex;
+    gap: 50px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px){
+    .product-grid{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px){
+
+    .navbar{
+        padding: 0 20px;
+    }
+
+    /* OCULTAS MENU NORMAL */
+    .nav-links{
+        display: none;
+        width: 100%;
+    }
+
+    /* MENU ACTIVO */
+    .nav-links.active{
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #000;
+        width: 100%;
+        padding: 20px;
+        z-index: 999;
+    }
+
+    /* HAMBURGUESA */
+    .menu-trigger{
+        display: flex;
+    }
+
+    .footer-wrap{
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+.footer{
+    background: #fff;
+    padding: 60px 10% 20px;
+    border-top: 1px solid #ddd;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.footer-wrap{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+/* IZQUIERDA */
+.f-info img{
+    height: 90px;
+    margin-bottom: 15px;
+}
+
+.f-info p{
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 250px;
+}
+
+/* LINKS CENTRALES */
+.f-links{
+    display: flex;
+    gap: 50px;
+}
+
+.footer h4{
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.footer a{
+    display: block;
+    font-size: 1.5rem;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
+.footer a:hover{
+    color: #d90429;
+}
+
+/* CONTACTO */
+.f-contact{
+    font-size: 1.5rem;
+    color: #333;
+    max-width: 250px;
+}
+
+.f-contact p{
+    margin-bottom: 10px;
+}
+
+.address{
+    font-size: 1.4rem;
+    color: #777;
+}
+
+/* LOGO EXTRA */
+.f-brand{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-brand img{
+    max-width: 220px;
+    height: auto;
+}
+
+/* PAGOS */
+.payment-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap;
+}
+
+.payment-bar img{
+    height: 75px;
+    opacity: 0.9;
+}
+
+/* COPY */
+.copy{
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px){
+
+    .footer-wrap{
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .f-links{
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .f-brand{
+        justify-content: flex-start;
+    }
+
+    .payment-bar{
+        gap: 15px;
+    }
+
+    .payment-bar img{
+        height: 50px;
+    }
+}
+
+.card-beneficios {
+    display: block;                  /* bloque normal */
+    width: fit-content;              /* solo el ancho del contenido */
+    background-color: transparent;   /* hueco */
+    color: #e60023;                  /* texto rojo Icee */
+    border: 2px solid #e60023;       /* borde rojo Icee */
+    border-radius: 12px;
+    padding: 16px;
+    margin: 20px auto 0 auto;        /* centra horizontalmente */
+    text-align: center;               /* centra el contenido dentro */
+    font-size: 14px;
+}
+.card-beneficios h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.card-beneficios ul {
+    padding-left: 0;
+    margin: 0 auto;
+    list-style-position: inside;
+}
+
+.card-beneficios li {
+    margin-bottom: 6px;
+}
+
+
+
+
+/* Contenido interno del acordeón */
+.accordion-content {
+  background-color: #fff0f2; /* tono suave rosado / Icee */
+  color: #222; /* texto oscuro para leer fácil */
+  padding: 15px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-left: 3px solid #e60023; /* borde rojo Icee a la izquierda */
+  border-radius: 0 0 8px 8px; /* esquinas redondeadas solo abajo */
+}
+
+/* Párrafos */
+.accordion-content p {
+  margin: 6px 0;
+}
+
+/* Negritas */
+.accordion-content b {
+  color: #e60023; /* destacar títulos */
+}
+
+/* Listas */
+.accordion-content ul {
+  padding-left: 20px;
+  margin: 6px 0;
+}
+
+.accordion-content li {
+  margin-bottom: 5px;
+  list-style-type: disc;
+}
+
+/* Resaltar bloques de información */
+.accordion-content .highlight {
+  background-color: #ffe5ea; /* rosita suave */
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#features-accordion .panel-heading {
+  background: #e60023; /* rojo Icee */
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+#features-accordion .panel-heading a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#features-accordion .panel-heading .fa {
+  transition: transform 0.3s;
+}
+
+#features-accordion .panel-collapse {
+  background: #fff0f2; /* rosita suave Icee */
+  padding: 12px 15px;
+  border-left: 3px solid #0010ff;
+  border-radius: 0 0 8px 8px;
+}
+
+#features-accordion .panel-collapse b {
+  color: #e60023;
+}
+
+#features-accordion .panel-collapse p,
+#features-accordion .panel-collapse br {
+  line-height: 1.5;
+}
+
+#cart {font-size: 22px;
+  position: fixed;
+  top: 90px;
+  right: 10px;
+  background: none; /* Quitamos el fondo blanco */
+  border: none; /* Quitamos el borde */
+  padding: 0;
+  width: auto; /* Hacemos que se ajuste al contenido */
+  z-index: 999;
+  box-shadow: none; /* Sin sombra */
+  cursor: pointer;
+}
+#cart-details {
+  font-size: 22px;
+  color: black;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 270px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  position: absolute;
+  right: 0;
+}
+    #cart-items img {
+  width: 29px;
+  height: 29px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+    #cart-items {
+      max-height: 200px;
+      overflow-y: auto;
+      padding-left: 20px;
+    }
+    #cart button {
+      margin-top: 10px;
+    }
+.add-to-cart {
+  background-color: #ed211d;
+  color: white;
+  font-size: 1.5rem;
+  padding: 2px 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+.add-to-cart:hover {
+  background-color: #0a53b5;
+}
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .product-container {
+    flex-direction: column;
+  }  
+  .product-image img {
+    width: 100%;
+    height: auto;
+  }
+  .product-details {
+    width: 100%;
+  }
+}
+.kilo-select {
+  display: block;
+  margin: 0 auto;
+}
+.kilo-select {
+  padding: 5px 10px;
+  border: 1px solid #28a745; /* verde Bootstrap */
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #f8f9fa; /* gris claro */
+  color: #212529;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.kilo-select:focus {
+  border-color: #218838;
+  outline: none;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  background-color: #fff;
+}
+</style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="logo.gif" alt="ICEE MX">
+    </div>
+
+    <!-- 🔥 MENU PC -->
+    <div class="nav-links">
+        <a href="nosotros.html">Inicio</a>
+        <a href="index.html">Productos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="terminos.html">Terminos</a>
+    </div>
+
+    <!-- 🔥 HAMBURGUESA -->
+    <div class="menu-trigger" id="openMenu">
+        <span class="menu-label">Menú</span>
+        <div class="burger">
+            <span class="b-line"></span>
+            <span class="b-line"></span>
+            <span class="b-line"></span>
+        </div>
+    </div>
+</nav>
+
+
+<header class="hero">
+    <img src="oso.png" alt="Oso" class="hero-img">
+</header>
+<!-- PRODUCTO -->
+<!-- PRODUCTO -->
+<div class="product-wrapper">
+
+
+
+
+    <div class="product-grid">
+
+        <!-- 🔥 IZQUIERDA: IMAGEN -->
+        <div class="product-image">
+            <img src="20.png" alt="Dispensador I-PRO M3">
+        </div>
+
+        <!-- 🔥 CENTRO: INFO -->
+        <div class="product-center">
+            <h1>Slush Puppie Frozen Pops</h1>
+
+        
+
+            <div class="price">$150 MXN</div>
+
+            <div class="specs">
+                <p><strong>Cantidad:</strong> 20 Piezas de 48 ml c/u</p>
+                <p><strong>Sabores:</strong> Frambuesa azul, naranja, uva y cereza</p>
+            </div>
+
+                 
+<a href="#" class="product-card">
+  <div class="info-box">
+    
+    <!-- Botón que agrega al carrito -->
+    <span class="btn-sm add-to-cart" 
+         data-nombre="Slush Puppie Frozen Pops (20 Piezas de 48 ml c/u)"
+          data-modelo="Sabor Surtido"
+          data-precio="150"
+          data-imagen="20.png">
+      Agregar
+    </span>
+
+  </div>
+</a>
+
+        </div>
+
+
+        <!-- 🔥 DERECHA: FEATURES -->
+        <!-- ACORDEÓN DE CARACTERÍSTICAS DEL DISPENSADOR -->
+<!-- 🔥 DERECHA: FEATURES -->
+<div class="panel-group category-products" id="features-accordion" style="margin-bottom: 10px;">
+
+  <!-- INGREDIENTES -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#features-accordion" href="#ingredientes">
+          <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+          Ingredientes
+        </a>
+      </h4>
+    </div>
+    <div id="ingredientes" class="panel-collapse collapse">
+      <b>BAYAS AZULES:</b> Agua, azúcar, jarabe de maíz sólidos, sabor natural y artificial (con FD&C Blue #1), ácido cítrico, goma guar, goma xantana.<br><br>
+      
+      <b>CEREZA:</b> Agua, azúcar, jarabe de maíz sólidos, sabor natural y artificial (con FD&C Red #40), ácido cítrico, goma guar, goma xantana.<br><br>
+      
+      <b>NARANJA:</b> Agua, azúcar, jarabe de maíz sólidos, ácido cítrico, sabor natural, goma guar, goma xantana, FD&C Amarillo #6.<br><br>
+      
+      <b>UVA:</b> Agua, azúcar, jarabe de maíz sólidos, ácido cítrico, sabor artificial, goma guar, goma xantana, FD&C Rojo #40, FD&C Azul #1.
+    </div>
+  </div>
+
+  <!-- INFORMACIÓN NUTRIMENTAL -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#features-accordion" href="#nutrimental">
+          <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+          Información nutrimental
+        </a>
+      </h4>
+    </div>
+    <div id="nutrimental" class="panel-collapse collapse">
+      20 porciones por contenedor<br>
+      Tamaño de la porción: 48 g<br><br>
+
+      <b>Cantidad por porción</b><br>
+      Calorías: 35<br><br>
+
+      <b>% de valor diario*</b><br>
+      Grasa total: 0 g (0%)<br>
+      Sodio: 0 mg (0%)<br>
+      Carbohidratos totales: 9 g (3%)<br>
+      Azúcares totales: 7 g<br>
+      Incluye 7 g de azúcares añadidos (14%)<br>
+      Proteína: 0 g<br><br>
+
+      <small>*El % de valor diario (DV) indica cuánto contribuye un nutriente a la dieta diaria, basado en una dieta de 2,000 calorías.</small>
+    </div>
+  </div>
+
+</div>
+
+</div> <!-- fin product-grid -->
+
+
+
+
+</div> <!-- fin product-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- FOOTER ORIGINAL -->
+ <footer class="footer">
+
+    <div class="footer-wrap">
+
+        <!-- IZQUIERDA -->
+        <div class="f-info">
+            <img src="logos.png" alt="Logo">
+            <p>
+                Tecnología de punta en refrigeración comercial y sistemas de granizado industrial.
+            </p>
+        </div>
+
+        <!-- CENTRO LINKS -->
+        <div class="f-links">
+         
+
+            <div>
+                <a href="aviso.html">Aviso de privacidad</a>
+                <a href="terminos.html">Términos</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </div>
+
+        <!-- CONTACTO -->
+        <div class="f-contact">
+            <p><b>Email:</b><br> ventas@icee.lat</p>
+            <p><b>WhatsApp:</b> 722-868-8427</p>
+            <p><b>Tel:</b> 55-9317-8433</p>
+            <p class="address">
+                Av. Presidentes 52, Portales Sur, Benito Juárez, 03303 Ciudad de México, CDMX, México
+            </p>
+        </div>
+
+        <!-- 🔥 NUEVO BLOQUE LOGO EXTRA -->
+        <div class="f-brand">
+            <img src="mm.png" alt="Marca">
+        </div>
+
+    </div>
+
+    <!-- PAGOS -->
+    <div class="payment-bar">
+        <img src="visa.png">
+        <img src="master.png">
+        <img src="spei.png">
+        <img src="oxxo.png">
+    </div>
+
+    <!-- COPY -->
+    <div class="copy">
+        © 2026 ICEE MÉXICO. Todos los derechos reservados.
+    </div>
+
+</footer>
+
+<div id="cart" onclick="toggleCarrito()" style="cursor: pointer; width:166px; font-family:Arial,sans-serif;">
+  <h5 style="margin:0; padding:8px; color:black; font-size:16px;">
+    🛒 Carrito (<span id="cart-count">0</span>)
+  </h5>
+  <div id="cart-details" style="display: none; padding:10px; border:1px solid #ccc;">
+    <ul id="cart-items" style="list-style:none; padding:0; margin:0;"></ul>
+    <div style="text-align:right; font-weight:bold; margin-top:8px;">
+      Total: $<span id="cart-total">0.00</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:10px;">
+      <button onclick="vaciarCarrito(event)" style="width:48%; padding:5px 0;">Vaciar Carrito</button>
+      <button onclick="finalizarCompra(event)" style="width:48%; padding:5px 0;">Finalizar Compra</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+// Guardar carrito y actualizar vista
+function guardarCarrito() { 
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarCarrito();
+}
+
+// Actualizar lista de carrito, total y contador
+function actualizarCarrito() {
+  const lista = document.getElementById('cart-items');
+  const total = document.getElementById('cart-total');
+  const contador = document.getElementById('cart-count');
+  lista.innerHTML = '';
+  let totalPrecio = 0;
+
+  carrito.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.style.display = 'flex';
+    li.style.alignItems = 'center';
+    li.style.marginBottom = '8px';
+    li.style.borderBottom = '1px solid #eee';
+    li.style.paddingBottom = '4px';
+
+    const img = document.createElement('img');
+    img.src = item.imagen;
+    img.alt = item.nombre;
+    img.style.width = '40px';
+    img.style.height = '40px';
+    img.style.objectFit = 'cover';
+    img.style.marginRight = '10px';
+
+    const texto = document.createElement('span');
+    texto.textContent = `${item.nombre} (${item.modelo}) - $${item.precio.toFixed(2)}`;
+    texto.style.fontSize = '14px';
+
+    const btnEliminar = document.createElement('button');
+    btnEliminar.textContent = '✕';
+    btnEliminar.style.marginLeft = 'auto';
+    btnEliminar.style.border = 'none';
+    btnEliminar.style.background = 'transparent';
+    btnEliminar.style.color = '#dc3545';
+    btnEliminar.style.cursor = 'pointer';
+    btnEliminar.onclick = (e) => {
+      e.stopPropagation();
+      carrito.splice(index, 1);
+      guardarCarrito();
+    }
+
+    li.appendChild(img);
+    li.appendChild(texto);
+    li.appendChild(btnEliminar);
+    lista.appendChild(li);
+
+    totalPrecio += item.precio; // sin multiplicar por cantidad
+  });
+
+  contador.textContent = carrito.length;
+  total.textContent = totalPrecio.toFixed(2);
+}
+
+// Función para agregar al carrito
+
+
+// Funciones auxiliares
+function vaciarCarrito(e){ e.stopPropagation(); carrito=[]; guardarCarrito(); }
+function finalizarCompra(e){ e.stopPropagation(); guardarCarrito(); window.location.href="checkout.html"; }
+function toggleCarrito(){ 
+  const detalles = document.getElementById('cart-details'); 
+  detalles.style.display = detalles.style.display === 'none' ? 'block' : 'none';
+}
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+
+    const card = this.closest('.product-card');
+    const select = card.querySelector('.sabor-select');
+    if(select) {
+      const sabor = select.value;
+      if(!sabor) {
+        alert('Por favor, selecciona un sabor.');
+        return;
+      }
+      this.dataset.modelo = sabor; // actualiza el modelo con el sabor
+    }
+    const nombre = this.dataset.nombre;
+    const modelo = this.dataset.modelo;
+    const precio = parseFloat(this.dataset.precio);
+    const imagen = this.dataset.imagen;
+
+    // Aquí agregas al carrito
+    carrito.push({ nombre, modelo, precio, imagen });
+    guardarCarrito(); // tu función para guardar el carrito
+  });
+});
+// Inicializa carrito al cargar
+document.addEventListener('DOMContentLoaded', actualizarCarrito);
+</script>
+
+
+
+<style type="text/css">.redes-flotantes {
+position: fixed;
+right: 8px;
+top: 75%;
+z-index: 20;
+max-width: 77px;
+
+}
+.redes-flotantes img {
+float: right; clear: right;
+ margin: 5px;
+-moz-transform: scale(.8) ;
+-webkit-transform: scale(.8) ;
+-o-transform: scale(.8) ;
+-ms-transform: scale(.8) ;
+transform: scale(.5) ;
+-webkit-transition: all .2s ease-in-out;
+-moz-transition: all .2s ease-in-out;
+-o-transition: all .2s ease-in-out;
+transition: all .2s ease-in-out;
+}</style>
+
+<div class='redes-flotantes'>
+<div class="btn-whatsapp">
+<a href="https://wa.me/message/HNLPXMA3NBCRM1">
+<img src="w.png" alt="">
+</a>
+</div>
+</div>
+
+
+
+<script>const btn = document.getElementById('openMenu');
+const menu = document.querySelector('.nav-links');
+
+btn.addEventListener('click', () => {
+    menu.classList.toggle('active');
+});</script>
+</body>
+</html>
