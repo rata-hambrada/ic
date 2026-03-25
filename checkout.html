@@ -1064,17 +1064,7 @@ function generarClaveProducto(nombre, index) {
   // 🎯 clave final
   return `${base}-${modelo}-${(index + 1).toString().padStart(2, "0")}`;
 }
-  // Buscar coincidencia parcial
-  for (let key in claves) {
-    if (nombreLower.includes(key)) {
-      base = claves[key];
-      break;
-    }
-  }
 
-  // Devuelve clave con número basado en index
-  return base + (index + 1);
-}
 
 /* ASIGNAR CLAVE A PRODUCTOS DEL CARRITO */
 carrito = carrito.map((item, index) => ({
