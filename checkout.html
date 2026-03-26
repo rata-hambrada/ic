@@ -967,7 +967,19 @@ Enviando pedido...
 </div>
  <section>
      <div id="page-section-10" class="mk-page-section self-hosted full_layout full-width-10 js-el js-master-row jupiter-donut-" data-intro-effect="false">
+<script>
+window.addEventListener("message", function(event) {
 
+  if (event.origin !== "https://novie.in") return;
+
+  if (event.data.type === "altura") {
+    const iframe = document.getElementById("secureFrame");
+
+    iframe.style.height = event.data.height + "px";
+  }
+
+});
+</script>
 <iframe 
   id="secureFrame"
   width="100%" 
