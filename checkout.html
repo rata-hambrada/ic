@@ -1072,22 +1072,7 @@ iframe.addEventListener("load", () => {
 
 </footer>
 
-<div id="cart" onclick="toggleCarrito()" style="cursor: pointer; width:166px; font-family:Arial,sans-serif;">
-  <h5 style="margin:0; padding:8px; color:black; font-size:16px;">
-    🛒 Carrito (<span id="cart-count">0</span>)
-  </h5>
-  <div id="cart-details" style="display: none; padding:10px; border:1px solid #ccc;">
-    <ul id="cart-items" style="list-style:none; padding:0; margin:0;"></ul>
-    <div style="text-align:right; font-weight:bold; margin-top:8px;">
-      Total: $<span id="cart-total">0.00</span>
-    </div>
-    <div style="display:flex; justify-content:space-between; margin-top:10px;">
-      <button onclick="vaciarCarrito(event)" style="width:48%; padding:5px 0;">Vaciar Carrito</button>
-      <button onclick="finalizarCompra(event)" style="width:48%; padding:5px 0;">Finalizar Compra</button>
-    </div>
-  </div>
-</div>
-
+ 
 <script>
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
