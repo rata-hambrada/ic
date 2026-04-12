@@ -348,7 +348,7 @@ body{
     margin-top: 10px;
 }
 
-/* 📱 RESPONSIVE */
+/* ðŸ“± RESPONSIVE */
 @media (max-width: 768px){
 
     .footer-wrap{
@@ -406,10 +406,10 @@ body{
 
 
 
-/* Contenido interno del acordeón */
+/* Contenido interno del acordeÃ³n */
 .accordion-content {
   background-color: #fff0f2; /* tono suave rosado / Icee */
-  color: #222; /* texto oscuro para leer fácil */
+  color: #222; /* texto oscuro para leer fÃ¡cil */
   padding: 15px 20px;
   font-size: 14px;
   line-height: 1.5;
@@ -417,14 +417,14 @@ body{
   border-radius: 0 0 8px 8px; /* esquinas redondeadas solo abajo */
 }
 
-/* Párrafos */
+/* PÃ¡rrafos */
 .accordion-content p {
   margin: 6px 0;
 }
 
 /* Negritas */
 .accordion-content b {
-  color: #e60023; /* destacar títulos */
+  color: #e60023; /* destacar tÃ­tulos */
 }
 
 /* Listas */
@@ -438,7 +438,7 @@ body{
   list-style-type: disc;
 }
 
-/* Resaltar bloques de información */
+/* Resaltar bloques de informaciÃ³n */
 .accordion-content .highlight {
   background-color: #ffe5ea; /* rosita suave */
   padding: 6px 10px;
@@ -849,13 +849,13 @@ background:#212b34;
   animation: fadeIn 0.6s ease;
 }
 
-/* icono más grande */
+/* icono mÃ¡s grande */
 #mensaje-confirmacion::first-line{
   font-size: 18px;
   font-weight: bold;
 }
 
-/* animación */
+/* animaciÃ³n */
 @keyframes fadeIn{
   from{
     opacity: 0;
@@ -882,34 +882,7 @@ background:#212b34;
 
 <body>
 
-<nav class="navbar">
-    <div class="logo">
-        <img src="logo.gif" alt="ICEE MX">
-    </div>
 
-    <!-- 🔥 MENU PC -->
-    <div class="nav-links">
-        <a href="nosotros.html">Inicio</a>
-        <a href="index.html">Productos</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="terminos.html">Terminos</a>
-    </div>
-
-    <!-- 🔥 HAMBURGUESA -->
-    <div class="menu-trigger" id="openMenu">
-        <span class="menu-label">Menú</span>
-        <div class="burger">
-            <span class="b-line"></span>
-            <span class="b-line"></span>
-            <span class="b-line"></span>
-        </div>
-    </div>
-</nav>
-
-
-<header class="hero">
-    <img src="cono.png" alt="Oso" class="hero-img">
-</header>
 <!-- PRODUCTO -->
 <!-- PRODUCTO -->
 
@@ -972,7 +945,7 @@ Enviando pedido...
 <div id="checkout-wrapper">
   <!-- Formulario -->
   <div id="checkout-form-container">
-    <h3>Datos de Facturacion</h3>
+    <h3>Datos del cliente</h3>
     <form id="checkout-form">
       <label for="name">Nombre:</label>
       <input type="text" id="name" required><br>
@@ -997,12 +970,12 @@ Enviando pedido...
 
     </form>
     <div id="mensaje-confirmacion">
-  ✅ Tu solicitud fue enviada correctamente.<br><br>
-  En breve, uno de nuestros asesores se pondrá en contacto contigo para confirmar tu pedido y brindarte seguimiento.
+ Tu solicitud fue enviada correctamente.<br><br>
+  En breve, uno de nuestros asesores se pondra¡ en contacto contigo para confirmar tu pedido y brindarte seguimiento.
 </div>
   </div>
 
-  <!-- Método de pago -->
+  <!-- MÃ©todo de pago -->
 
   <!-- Carrito -->
   <div id="checkout-cart-container">
@@ -1012,6 +985,37 @@ Enviando pedido...
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 // Obtener carrito
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -1020,7 +1024,7 @@ let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 function generarClaveProducto(nombre, index) {
 
   const claves = {
-    "máquina icee": "MA",
+    "mÃ¡quina icee": "MA",
     "dispensador de bebidas carbonatadas congeladas": "DC",
     "dispensador de bebidas congeladas": "DF",
     "carro dispensador": "CR",
@@ -1033,7 +1037,7 @@ function generarClaveProducto(nombre, index) {
   let nombreLower = nombre.toLowerCase();
   let base = "PR";
 
-  // 🔎 Detectar tipo
+  // ðŸ”Ž Detectar tipo
   for (let key in claves) {
     if (nombreLower.includes(key)) {
       base = claves[key];
@@ -1041,10 +1045,10 @@ function generarClaveProducto(nombre, index) {
     }
   }
 
-  // 🔎 Detectar modelo (números o palabras clave)
+  // ðŸ”Ž Detectar modelo (nÃºmeros o palabras clave)
   let modelo = "";
 
-  // busca números tipo 563, 561, etc
+  // busca nÃºmeros tipo 563, 561, etc
   let matchNumero = nombre.match(/\b\d{2,4}\b/);
   if (matchNumero) {
     modelo = matchNumero[0];
@@ -1056,14 +1060,14 @@ function generarClaveProducto(nombre, index) {
     modelo = matchTexto[0].toUpperCase();
   }
 
-  // 🧩 fallback si no hay modelo
-  if (!modelo) {
-    modelo = (index + 1).toString().padStart(2, "0");
-  }
-
-  // 🎯 clave final
-  return `${base}-${modelo}-${(index + 1).toString().padStart(2, "0")}`;
+if (!modelo) {
+  modelo = "";
 }
+
+  // ðŸŽ¯ clave final
+return modelo ? `${base}-${modelo}` : base;
+}
+
 
 
 /* ASIGNAR CLAVE A PRODUCTOS DEL CARRITO */
@@ -1188,8 +1192,8 @@ function generarPDFConDatos(factura, numeroCliente, facturaNumero){
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF();
 
-doc.addImage("logo.png","PNG",1,8,78,36);
 
+doc.addImage("pop.png","PNG",10,15,75,20);
 doc.rect(150,13,50,19);
 
 doc.setFontSize(8);
@@ -1199,28 +1203,28 @@ doc.text(`Fecha: ${fechaHoraPedido}`,152,24);
 doc.text(`Vigencia: 7 días`,152,30);
 
 // --- Caja de Cliente ---
-doc.rect(10,55,95,35);   // de 35 → 55
-doc.rect(10,60,95,30);   // de 40 → 60
+doc.rect(10,55,95,35);   // de 35 â†’ 55
+doc.rect(10,60,95,30);   // de 40 â†’ 60
 
 doc.setFontSize(9);
-doc.text("Datos del Cliente",12,59); // de 39 → 59
-doc.text(`Nombre: ${nombre}`,12,64); // de 44 → 64
-doc.text(`Correo: ${email}`,12,70);  // de 50 → 70
-doc.text(`Dirección: ${calle}`,12,76);// de 56 → 76
-doc.text(`Estado: ${muni}`,12,82);    // de 62 → 82
-doc.text(`Telefono: ${tel}`,12,88);// de 68 → 88
+doc.text("Datos del Cliente",12,59); // de 39 â†’ 59
+doc.text(`Nombre: ${nombre}`,12,64); // de 44 â†’ 64
+doc.text(`Correo: ${email}`,12,70);  // de 50 â†’ 70
+doc.text(`Dirección: ${calle}`,12,76);// de 56 â†’ 76
+doc.text(`Estado: ${muni}`,12,82);    // de 62 â†’ 82
+doc.text(`Telefono: ${tel}`,12,88);// de 68 â†’ 88
 
 // --- Caja de Vendedor ---
-doc.rect(105,55,95,35);  // de 35 → 55
-doc.rect(105,60,95,30);  // de 40 → 60
+doc.rect(105,55,95,35);  // de 35 â†’ 55
+doc.rect(105,60,95,30);  // de 40 â†’ 60
 
 doc.setFontSize(9);
-doc.text("Datos del Vendedor",107,59); // de 39 → 59
-doc.text("Empresa: Aceros San Luis, S.A. de C.V.",107,64);// de 44 → 64
-doc.text("Correo: ventas@grupo-simec.org",107,70);// de 50 → 70
-doc.text("Direccion:Eje 114 #440, 78395, S.L.P.",107,76);// de 56 → 76
-doc.text("Tel: +52 55 9317 8433",107,82);// de 62 → 82
-doc.text("ventas@grupo-simec.org",107,88);// de 68 → 88
+doc.text("Datos del Vendedor",107,59); // de 39 â†’ 59
+doc.text("Empresa: ICEE DE MEXICO SA DE CV.",107,64);// de 44 â†’ 64
+doc.text("Correo: ventas@icee.lat",107,70);// de 50 â†’ 70
+doc.text("Direccion:Av. Presidentes 52, Portales Sur, Benito Juárez,",107,76);// de 56 â†’ 76
+doc.text("03303 Ciudad de México, CDMX, México ",107,82);// de 62 â†’ 82
+doc.text(" Tel: +52 55 9317 8433",107,88);// de 68 â†’ 88
 
 const cadena = generarCadenaSeguridad(90);
 
@@ -1248,7 +1252,7 @@ for(let i=0;i<10;i++){
     doc.line(10,110+(i*8),200,110+(i*8)); // de 90 a 110
 }
 
-let y = 110; // posición inicial de los productos
+let y = 110; // posiciÃ³n inicial de los productos
 let total = 0;
 
 factura.forEach((item,index)=>{
@@ -1257,11 +1261,14 @@ factura.forEach((item,index)=>{
 
     doc.text(String(index+1),13,yTexto);
 
+
+
     // Clave ya garantizada
     let clave = item.clave || generarClaveProducto(item.nombre, index);
     doc.text(clave,21,yTexto);
 
-    doc.text(item.nombre,45,yTexto,{maxWidth:120});
+doc.text(`${item.nombre} (${item.modelo})`,45,yTexto,{maxWidth:120});    
+    
     doc.text(`$${importe.toFixed(2)}`,198,yTexto,{align:"right"});
 
     total += importe;
@@ -1269,17 +1276,28 @@ factura.forEach((item,index)=>{
 });
 let iva = total * 0.16;
 let subtotal = total - iva;
-// Caja de Términos y Condiciones bajada
+// costo de envío (MISMA lógica que usas arriba)
+const costoEnvio = total < 1800 ? 300 : 0;
+
+// súmalo al total
+total += costoEnvio;
+
+
+
+
+
+
+// Caja de TÃ©rminos y Condiciones bajada
 doc.rect(10,200,190,35); // subimos la Y de 165 a 200
 
 doc.setFontSize(8);
 doc.text("Términos y Condiciones:",12,207);
 doc.text("- Precios expresados en MXN.",12,213);
-doc.text("- Material sujeto a disponibilidad.",12,219);
+doc.text("- Instalacion y mano de obra incluido.",12,219);
 doc.text("- Precios sujetos a cambio sin previo aviso.",12,225);
-doc.text("- Entregas de materiales desde 1 hora hasta 24 horas dependiendo la ubicacion.",12,231);
+doc.text("- Las entregas puden ser desde 4 horas hasta 72 horas dependiendo la ubicacion.",12,231);
 
-// Caja de Totales / Pagos bajada junto a Términos
+// Caja de Totales / Pagos bajada junto a TÃ©rminos
 doc.rect(160,240,40,20); // de 210 a 240
 
 doc.line(160,247,200,247);
@@ -1290,9 +1308,10 @@ doc.text(`Subtotal: $${subtotal.toFixed(2)}`,162,244);
 doc.text(`IVA 16%: $${iva.toFixed(2)}`,162,250);
 doc.text(`Total: $${total.toFixed(2)}`,162,256);
 
-// Logo footer un poco más abajo
-let yLogo = 270; // de 270 a 280
-doc.addImage("logos.png","PNG",87,yLogo,36,18);
+// Logo footer un poco mÃ¡s abajo
+// Logo footer un poco mÃ¡s abajo
+let yLogo = 240;
+doc.addImage("cono.png","PNG",85,yLogo,50,45);
 
 // Convertir PDF a Base64
 const pdfBase64 = doc.output('datauristring').split(',')[1];
@@ -1301,6 +1320,12 @@ const pdfBase64 = doc.output('datauristring').split(',')[1];
 enviarPDFAlServidor(pdfBase64);
 
 }}
+
+
+
+
+
+
   function generarCadenaSeguridad(longitud) {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?/';
     let resultado = '';
@@ -1382,210 +1407,52 @@ document.getElementById('checkout-form').addEventListener('submit', function(e){
 </section>
 
 <!-- FOOTER ORIGINAL -->
- <footer class="footer">
 
-    <div class="footer-wrap">
 
-        <!-- IZQUIERDA -->
-        <div class="f-info">
-            <img src="logos.png" alt="Logo">
-            <p>
-                Tecnología de punta en refrigeración comercial y sistemas de granizado industrial.
-            </p>
-        </div>
-
-        <!-- CENTRO LINKS -->
-        <div class="f-links">
-         
-
-            <div>
-                <a href="aviso.html">Aviso de privacidad</a>
-                <a href="terminos.html">Términos</a>
-                <a href="contacto.html">Contacto</a>
-            </div>
-        </div>
-
-        <!-- CONTACTO -->
-        <div class="f-contact">
-            <p><b>Email:</b><br> ventas@icee.lat</p>
-            <p><b>WhatsApp:</b> 722-868-8427</p>
-            <p><b>Tel:</b> 55-9317-8433</p>
-            <p class="address">
-                Av. Presidentes 52, Portales Sur, Benito Juárez, 03303 Ciudad de México, CDMX, México
-            </p>
-        </div>
-
-        <!-- 🔥 NUEVO BLOQUE LOGO EXTRA -->
-        <div class="f-brand">
-            <img src="mm.png" alt="Marca">
-        </div>
-
-    </div>
-
-    <!-- PAGOS -->
-    <div class="payment-bar">
-        <img src="visa.png">
-        <img src="master.png">
-        <img src="spei.png">
-        <img src="oxxo.png">
-    </div>
-
-    <!-- COPY -->
-    <div class="copy">
-        © 2026 ICEE MÉXICO. Todos los derechos reservados.
-    </div>
-
-</footer>
-
-<div id="cart" onclick="toggleCarrito()" style="cursor: pointer; width:166px; font-family:Arial,sans-serif;">
-  <h5 style="margin:0; padding:8px; color:black; font-size:16px;">
-    🛒 Carrito (<span id="cart-count">0</span>)
-  </h5>
-  <div id="cart-details" style="display: none; padding:10px; border:1px solid #ccc;">
-    <ul id="cart-items" style="list-style:none; padding:0; margin:0;"></ul>
-    <div style="text-align:right; font-weight:bold; margin-top:8px;">
-      Total: $<span id="cart-total">0.00</span>
-    </div>
-    <div style="display:flex; justify-content:space-between; margin-top:10px;">
-      <button onclick="vaciarCarrito(event)" style="width:48%; padding:5px 0;">Vaciar Carrito</button>
-      <button onclick="finalizarCompra(event)" style="width:48%; padding:5px 0;">Finalizar Compra</button>
-    </div>
-  </div>
-</div>
 
 <script>
+window.addEventListener("message", function(event) {
 
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  if (event.origin !== "https://icee-ventas.lat") return;
 
-// Guardar carrito y actualizar vista
-function guardarCarrito() { 
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  actualizarCarrito();
-}
+  if (event.data.type === "carrito") {
 
-// Actualizar lista de carrito, total y contador
-function actualizarCarrito() {
-  const lista = document.getElementById('cart-items');
-  const total = document.getElementById('cart-total');
-  const contador = document.getElementById('cart-count');
-  lista.innerHTML = '';
-  let totalPrecio = 0;
+    const carritoRecibido = event.data.data;
 
-  carrito.forEach((item, index) => {
-    const li = document.createElement('li');
-    li.style.display = 'flex';
-    li.style.alignItems = 'center';
-    li.style.marginBottom = '8px';
-    li.style.borderBottom = '1px solid #eee';
-    li.style.paddingBottom = '4px';
+    console.log("Carrito recibido:", carritoRecibido);
 
-    const img = document.createElement('img');
-    img.src = item.imagen;
-    img.alt = item.nombre;
-    img.style.width = '40px';
-    img.style.height = '40px';
-    img.style.objectFit = 'cover';
-    img.style.marginRight = '10px';
+    // 🔴 guardar
+    localStorage.setItem("carrito", JSON.stringify(carritoRecibido));
 
-    const texto = document.createElement('span');
-    texto.textContent = `${item.nombre} (${item.modelo}) - $${item.precio.toFixed(2)}`;
-    texto.style.fontSize = '14px';
-
-    const btnEliminar = document.createElement('button');
-    btnEliminar.textContent = '✕';
-    btnEliminar.style.marginLeft = 'auto';
-    btnEliminar.style.border = 'none';
-    btnEliminar.style.background = 'transparent';
-    btnEliminar.style.color = '#dc3545';
-    btnEliminar.style.cursor = 'pointer';
-    btnEliminar.onclick = (e) => {
-      e.stopPropagation();
-      carrito.splice(index, 1);
-      guardarCarrito();
-    }
-
-    li.appendChild(img);
-    li.appendChild(texto);
-    li.appendChild(btnEliminar);
-    lista.appendChild(li);
-
-    totalPrecio += item.precio; // sin multiplicar por cantidad
-  });
-
-  contador.textContent = carrito.length;
-  total.textContent = totalPrecio.toFixed(2);
-}
-
-// Función para agregar al carrito
-
-
-// Funciones auxiliares
-function vaciarCarrito(e){ e.stopPropagation(); carrito=[]; guardarCarrito(); }
-function finalizarCompra(e){ e.stopPropagation(); guardarCarrito(); window.location.href="checkout.html"; }
-function toggleCarrito(){ 
-  const detalles = document.getElementById('cart-details'); 
-  detalles.style.display = detalles.style.display === 'none' ? 'block' : 'none';
-}
-document.querySelectorAll('.add-to-cart').forEach(btn => {
-  btn.addEventListener('click', function(e){
-    e.preventDefault();
-
-    const card = this.closest('.product-card');
-    const select = card.querySelector('.sabor-select');
-    if(select) {
-      const sabor = select.value;
-      if(!sabor) {
-        alert('Por favor, selecciona un sabor.');
-        return;
+    // 🔴 FORZAR actualización con delay
+    setTimeout(() => {
+      if (typeof actualizarCheckout === "function") {
+        actualizarCheckout();
+      } else {
+        console.error("actualizarCheckout no existe aún");
       }
-      this.dataset.modelo = sabor; // actualiza el modelo con el sabor
-    }
-    const nombre = this.dataset.nombre;
-    const modelo = this.dataset.modelo;
-    const precio = parseFloat(this.dataset.precio);
-    const imagen = this.dataset.imagen;
+    }, 200); // 🔥 clave
+  }
 
-    // Aquí agregas al carrito
-    carrito.push({ nombre, modelo, precio, imagen });
-    guardarCarrito(); // tu función para guardar el carrito
-  });
 });
-// Inicializa carrito al cargar
-document.addEventListener('DOMContentLoaded', actualizarCarrito);
 </script>
+<script>
+function enviarAltura() {
+  const altura = document.body.scrollHeight;
 
-
-
-<style type="text/css">.redes-flotantes {
-position: fixed;
-right: 8px;
-top: 75%;
-z-index: 20;
-max-width: 77px;
-
+  parent.postMessage(
+    { type: "altura", height: altura },
+    "*"
+  );
 }
-.redes-flotantes img {
-float: right; clear: right;
- margin: 5px;
--moz-transform: scale(.8) ;
--webkit-transform: scale(.8) ;
--o-transform: scale(.8) ;
--ms-transform: scale(.8) ;
-transform: scale(.5) ;
--webkit-transition: all .2s ease-in-out;
--moz-transition: all .2s ease-in-out;
--o-transition: all .2s ease-in-out;
-transition: all .2s ease-in-out;
-}</style>
 
-<div class='redes-flotantes'>
-<div class="btn-whatsapp">
-<a href="https://wa.me/message/HNLPXMA3NBCRM1">
-<img src="w.png" alt="">
-</a>
-</div>
-</div>
+// enviar al cargar
+window.addEventListener("load", enviarAltura);
 
+// enviar si cambia algo
+setTimeout(enviarAltura, 500);
+setTimeout(enviarAltura, 1000);
+</script>
 
 
 <script>const btn = document.getElementById('openMenu');
