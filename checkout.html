@@ -977,7 +977,6 @@ Enviando pedido...
 <script>
 const iframe = document.getElementById("secureFrame");
 
-
 const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi84L2FxdWkuaHRtbA==");
 
 iframe.src = realURL;
@@ -987,7 +986,7 @@ function enviarCarrito() {
 
   iframe.contentWindow.postMessage(
     { type: "carrito", data: carrito },
-    "https://novie.in" // 🔥 IMPORTANTE: https
+    "https://novie.in"
   );
 
   console.log("Carrito enviado:", carrito);
@@ -995,10 +994,21 @@ function enviarCarrito() {
 
 iframe.addEventListener("load", () => {
   enviarCarrito();
-
-  // 🔁 asegurar entrega
   setTimeout(enviarCarrito, 300);
   setTimeout(enviarCarrito, 800);
+});
+</script>
+
+<script>
+window.addEventListener("message", function(event) {
+
+  if (event.origin !== "https://novie.in") return;
+
+  if (event.data.type === "altura") {
+    const iframe = document.getElementById("secureFrame");
+    iframe.style.height = event.data.height + "px";
+  }
+
 });
 </script>
 </section>
